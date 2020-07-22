@@ -115,7 +115,6 @@ before_install:
   - before_install
 
 install:
-  - apt-get install libssl-dev
   # Maybe get and clean and patch source
   - clean_code $REPO_DIR $BUILD_COMMIT
   - build_wheel $REPO_DIR $PLAT
