@@ -21,7 +21,7 @@ env:
 
 language: python
 # Default Python version is usually 2.7
-python: 3.7
+python: 3.6
 dist: bionic
 services: docker
 
@@ -35,6 +35,12 @@ jobs:
         - PLAT=i686
     - os: linux
       env:
+        - MB_PYTHON_VERSION=3.6
+        - NP_BUILD_DEP=1.16
+        - NP_TEST_DEP=1.16
+        - PLAT=x86_64
+    - os: linux
+      env:
         - MB_PYTHON_VERSION=3.7
         - NP_BUILD_DEP=1.16
         - NP_TEST_DEP=1.16
@@ -42,12 +48,6 @@ jobs:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.8
-        - NP_BUILD_DEP=1.16
-        - NP_TEST_DEP=1.16
-        - PLAT=x86_64
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
         - NP_BUILD_DEP=1.16
         - NP_TEST_DEP=1.16
         - PLAT=x86_64
