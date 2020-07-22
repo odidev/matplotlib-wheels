@@ -49,6 +49,24 @@ jobs:
         - MB_PYTHON_VERSION=3.9
         - NP_BUILD_DEP=1.16
         - NP_TEST_DEP=1.16
+    - os: linux
+      arch: arm64
+      env:
+        - MB_PYTHON_VERSION=3.7
+        - NP_BUILD_DEP=1.19
+        - NP_TEST_DEP=1.19
+        - PLAT=aarch64
+        - MB_ML_VER=2014
+        - DOCKER_TEST_IMAGE=multibuild/xenial_{PLAT}
+    - os: linux
+      arch: arm64
+      env:
+        - MB_PYTHON_VERSION=3.8
+        - NP_BUILD_DEP=1.19
+        - NP_TEST_DEP=1.19
+        - PLAT=aarch64
+        - MB_ML_VER=2014
+        - DOCKER_TEST_IMAGE=multibuild/xenial_{PLAT}
     - os: osx
       language: generic
       env:
@@ -91,7 +109,11 @@ install:
   - python rm_test_images.py wheelhouse/*.whl
 
 script:
-  - TEST_DEPENDS="numpy==$NP_TEST_DEP sphinx pytest pytest-timeout pytest-xdist pytest-faulthandler pytest-rerunfailures requests[security]"
+  - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
+      TEST_DEPENDS="numpy==$NP_TEST_DEP sphinx pytest pytest-timeout pytest-xdist pytest-faulthandler pytest-rerunfailures";
+    else
+      TEST_DEPENDS="numpy==$NP_TEST_DEP sphinx pytest pytest-timeout pytest-xdist pytest-faulthandler pytest-rerunfailures requests[security]";
+    fi
   # increase number of open files allowed for tests, on OSX
   # https://github.com/matplotlib/matplotlib/issues/3315
   - ulimit -n 4096
