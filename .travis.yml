@@ -47,7 +47,7 @@ jobs:
         - PLAT=x86_64
     - os: linux
       env:
-        - MB_PYTHON_VERSION=3.9
+        - MB_PYTHON_VERSION=3.6
         - NP_BUILD_DEP=1.16
         - NP_TEST_DEP=1.16
         - PLAT=x86_64
