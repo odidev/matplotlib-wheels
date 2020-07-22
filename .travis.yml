@@ -52,10 +52,10 @@ jobs:
     - os: linux
       arch: arm64
       env:
+        - PLAT=aarch64
         - MB_PYTHON_VERSION=3.7
         - NP_BUILD_DEP=1.19
         - NP_TEST_DEP=1.19
-        - PLAT=aarch64
         - MB_ML_VER=2014
         - DOCKER_TEST_IMAGE=multibuild/xenial_{PLAT}
     - os: linux
